@@ -4,7 +4,7 @@ $column-footer-height: 46px;
 
 
 
-$list-bg-color: #ebecf0;
+
 $col-height: calc(#{$board-content-height} - #{$gap *2 });
 
 .column {
@@ -13,7 +13,7 @@ $col-height: calc(#{$board-content-height} - #{$gap *2 });
   height: $col-height;
   margin-left: $gap;
   > * {
-    background-color: $list-bg-color;
+    background-color: $column-bg-color;
     padding: 0px 8px;
   }
   header.column-drag-handle {
@@ -35,7 +35,7 @@ $col-height: calc(#{$board-content-height} - #{$gap *2 });
     border-bottom-right-radius: $column-border-radius;
     color: #888;
     .footer-actions{
-      margin-left: $gap;
+      margin-left: 6px;
       cursor: pointer;
       &:hover{
         color:$app-text-main-color;
@@ -55,7 +55,7 @@ $col-height: calc(#{$board-content-height} - #{$gap *2 });
       width: 8px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: darken($list-bg-color, 15);
+      background-color: darken($column-bg-color, 15);
       border-right: 5px solid #ccc;
     }
 
