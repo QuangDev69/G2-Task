@@ -1,5 +1,5 @@
 @import './_setting.scss'; 
-
+@import '~bootstrap/scss/bootstrap';
 
 body{
     margin: 0;
@@ -14,9 +14,32 @@ body{
     background-color: $board-bg-board;
     overflow: hidden;
     color: $app-text-main-color;
-    .icon {
+    .icon { 
         font-size: 14px;
-        margin-right: 4px;
+        margin: 0 4px;
     }
+    .task-manager-container{
+        padding: 0;
+        margin: 0 15px;
+    }
+
+    textarea:focus, 
+    textarea.form-control:focus, 
+    input.form-control:focus, 
+    input[type=text]:focus, 
+    input[type=password]:focus, 
+    input[type=email]:focus, 
+    input[type=number]:focus, 
+    [type=text].form-control:focus, 
+    [type=password].form-control:focus, 
+    [type=email].form-control:focus, 
+    [type=tel].form-control:focus, 
+    [contenteditable].form-control:focus {
+    box-shadow: none;
+    .btn:focus, .btn:active {
+        outline: none;
+        box-shadow: none;
+    }
+}
 }
 
