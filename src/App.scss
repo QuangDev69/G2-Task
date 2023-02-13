@@ -13,5 +13,10 @@ body{
     height: 100vh;  
     background-color: $board-bg-board;
     overflow: hidden;
+    color: $app-text-main-color;
+    .icon {
+        font-size: 14px;
+        margin-right: 4px;
+    }
 }
 
