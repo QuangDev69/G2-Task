@@ -10,11 +10,8 @@ body{
 }
 
 .task-manager-master{
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 40px 50px 1fr; //40nav 50boardbar end
-    line-height: 1.3em;   
+    height: 100vh;  
     background-color: $board-bg-board;
-    
+    overflow: hidden;
 }
 
