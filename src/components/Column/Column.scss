@@ -1,11 +1,8 @@
-@import "./_setting.scss";
+@import './_setting.scss';
 $column-header-height: 46px;
 $column-footer-height: 46px;
 
-
-
-
-$col-height: calc(#{$board-content-height} - #{$gap *2 });
+$col-height: calc(#{$board-content-height} - #{$gap * 2});
 
 .column {
   flex: 0 0 auto;
@@ -17,14 +14,49 @@ $col-height: calc(#{$board-content-height} - #{$gap *2 });
     padding: 0px 8px;
   }
   header.column-drag-handle {
-    padding-left: 15px;
+    padding: 6px 8px;
     height: $column-header-height;
-    line-height: $column-header-height;
+    // line-height: $column-header-height;
     font-size: 16px;
     font-weight: bold;
     border-top-left-radius: $column-border-radius;
     border-top-right-radius: $column-border-radius;
     cursor: pointer;
+    display: flex;
+    .column-title {
+      flex: 90%;
+    }
+    .column-dropdown-actions {
+      flex: 10%;
+      button.dropdown-btn {
+        padding: 0 6px;
+        letter-spacing: 1px;
+        font-weight: normal;
+        background-color: $column-bg-color;
+        border-color: $column-bg-color;
+        color: $app-text-main-color;
+        &::after {
+          content: '...';
+          border: none;
+        }
+        &:hover {
+          background-color: darken($column-bg-color, 10);
+          border-color: darken($column-bg-color, 10);
+        }
+      }
+      .dropdown-menu {
+        padding: 0;
+        min-width: 200px;
+        a.dropdown-item {
+          padding: 0.5rem 1rem;
+          font-size: 14px;
+          &:not(:last-child)
+          {
+              border-bottom: 1px solid darken($column-bg-color, 10);
+          }
+        }
+      }
+    }
   }
   footer {
     padding-left: 10px;
@@ -34,11 +66,11 @@ $col-height: calc(#{$board-content-height} - #{$gap *2 });
     border-bottom-left-radius: $column-border-radius;
     border-bottom-right-radius: $column-border-radius;
     color: #888;
-    .footer-actions{
+    .footer-actions {
       margin-left: 6px;
       cursor: pointer;
-      &:hover{
-        color:$app-text-main-color;
+      &:hover {
+        color: $app-text-main-color;
       }
     }
   }
@@ -63,9 +95,8 @@ $col-height: calc(#{$board-content-height} - #{$gap *2 });
       transition: transform 0.18s ease;
       transform: rotateZ(5deg);
       font-weight: bold;
-      
     }
-    .card-ghost-drop{
+    .card-ghost-drop {
       transition: transform 0.18s ease-in-out;
       transform: rotateZ(0deg);
       font-weight: bold;
