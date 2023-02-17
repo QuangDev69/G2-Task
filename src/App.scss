@@ -6,7 +6,7 @@ body{
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
     line-height: 1.3em;
-    // box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .task-manager-master{
@@ -22,7 +22,10 @@ body{
         padding: 0;
         margin: 0 15px;
     }
-
+    .form-control{
+        border-color: #fff;
+        outline:none;
+    }
     textarea:focus, 
     textarea.form-control:focus, 
     input.form-control:focus, 
@@ -35,8 +38,9 @@ body{
     [type=email].form-control:focus, 
     [type=tel].form-control:focus, 
     [contenteditable].form-control:focus {
-    box-shadow: none;
-}
+        box-shadow: none;
+        border: 1px solid $input-border-color;
+    }
     .btn:focus, .btn:active {
         outline: none !important;
         box-shadow: none !important;
@@ -49,8 +53,18 @@ body{
         cursor: pointer;
         &:focus{
             background-color: white;
-            border: 1px solid $input-border-color;
         }
+    }
+    span.cancel-icon {
+        margin-left: $gap;
+            cursor: pointer;
+            i{
+                font-size: 26px;
+                color: $alert-danger;
+                &:hover {
+                    color: darken($alert-danger, 6);
+                }
+            }
     }
 }
 

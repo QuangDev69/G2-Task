@@ -50,20 +50,6 @@
         border-radius: $column-border-radius;
         .input-enter-new-column{
             margin: 8px 0;
-            &:focus{
-                border-color: $input-border-color;
-            }
-        }
-        span.cancel-new-column{
-            margin-left: $gap;
-            cursor: pointer;
-            i{
-                font-size: 26px;
-                color: $alert-danger;
-                &:hover {
-                    color: darken($alert-danger, 6);
-                }
-            }
         }
       }
 }

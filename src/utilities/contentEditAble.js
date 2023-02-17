@@ -1,7 +1,7 @@
 //on key down
 export const saveContentAfterPressEnter = (e) => {
   if (e.key === 'Enter') {
-    e.preventDefault();
+    e.preventDefault()
     e.target.blur()
   }
 }
