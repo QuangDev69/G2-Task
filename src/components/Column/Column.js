@@ -9,9 +9,11 @@ import ConfirmModal from 'components/Common/ConfirmModal'
 import { mapOrder } from 'utilities/sorts'
 import { MODAL_ACTION_CONFIRM } from 'utilities/constants'
 import { saveContentAfterPressEnter, selectAllInlineText } from 'utilities/contentEditAble'
+import { createNewCard, updateColumn } from 'actions/ApiCall'
+
 
 function Column(props) {
-  const { column, onCardDrop, onUpdateColumn } = props
+  const { column, onCardDrop, onUpdateColumnState } = props
   const cards = mapOrder(column.cards, column.cardOrder, '_id')
 
   const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -39,21 +41,35 @@ function Column(props) {
     }
   }, [openNewCardForm])
 
+
+  //UPdate col title
   const handleColumnTitleBlur = () => {
-    const newColumn = {
-      ...column,
-      title: columnTitle
+
+    if (columnTitle !== column.title) {
+      const newColumn = {
+        ...column,
+        title: columnTitle
+      }
+      //call api updateColumn
+      updateColumn(newColumn._id, newColumn).then(updatedColumn => {
+        updatedColumn.cards = newColumn.cards
+        onUpdateColumnState(updatedColumn)
+      })
     }
-    onUpdateColumn(newColumn)
   }
 
+
+  //remove column
   const onConfirmModalAction = (type) => {
     if (type === MODAL_ACTION_CONFIRM) {
       const newColumn = {
         ...column,
         _destroy: true
       }
-      onUpdateColumn(newColumn)
+      //call api updateColumn
+      updateColumn(newColumn._id, newColumn).then(updatedColumn => {
+        onUpdateColumnState(updatedColumn)
+      })
     }
     toggleShowModal()
   }
@@ -63,19 +79,19 @@ function Column(props) {
       return
     }
     const newCardToAdd = {
-      id: Math.random().toString(36).substring(2, 7),
       boardId: column.boardId,
       columnId: column._id,
-      title: newCardTitle.trim(),
-      cover:null
+      title: newCardTitle.trim()
     }
+    createNewCard(newCardToAdd).then(card => {
+      let newColumn = cloneDeep(column)
+      newColumn.cards.push(card)
+      newColumn.cardOrder.push(card._id)
 
-    let newColumn = cloneDeep(column)
-    newColumn.cards.push(newCardToAdd)
-    newColumn.cardOrder.push(newCardToAdd._id)
-    onUpdateColumn(newColumn)
-    setNewCardTitle('')
-    toggleOnNewCardForm()
+      onUpdateColumnState(newColumn)
+      setNewCardTitle('')
+      toggleOnNewCardForm()
+    })
   }
 
   return (
