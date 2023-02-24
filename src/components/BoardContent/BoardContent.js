@@ -20,6 +20,8 @@ function BoardContent() {
   const [newColumnTitle, setNewColumnTitle] = useState('')
   const onNewColumnTitleChange = (e) => setNewColumnTitle(e.target.value)
 
+
+  //use EF on react
   useEffect(() => {
     const boardId = '63f470c630ef0b3e55f4e3d1'
     fetchBoardDetails(boardId).then(board => {
